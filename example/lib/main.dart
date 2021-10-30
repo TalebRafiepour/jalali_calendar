@@ -16,7 +16,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _State extends State<MyApp> {
-  PersianDate persianDate = PersianDate(format: "yyyy/mm/dd  \n DD  , d  MM  ");
+  PersianDate persianDate = PersianDate.pDate();
   String _datetime = '';
   String _format = 'yyyy-mm-dd';
   String _value = '';
@@ -36,7 +36,7 @@ class _State extends State<MyApp> {
   void initState() {
     super.initState();
     print(
-        "Parse TO Format ${persianDate.gregorianToJalali("2019-02-20T00:19:54.000Z", "yyyy-m-d hh:nn")}");
+        "Parse TO Format ${persianDate.gregorian_to_jalali(2019, 02, 20)}");
   }
 
   @override
@@ -55,11 +55,11 @@ class _State extends State<MyApp> {
                   Text('  مبدّل تاریخ و زمان ,‌ تاریخ هجری شمسی '),
                   Text(' تقویم شمسی '),
                   Text('date picker شمسی '),
-                  new RaisedButton(
+                  new ElevatedButton(
                     onPressed: _selectDate,
                     child: new Text('نمایش تقویم'),
                   ),
-                  new RaisedButton(
+                  new ElevatedButton(
                     onPressed: _showDatePicker,
                     child: new Text('نمایش دیت پیکر'),
                   ),

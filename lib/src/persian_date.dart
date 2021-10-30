@@ -49,21 +49,21 @@ const String am = 'am'; // نمایش وقت به صورت کوتاه
 const String AM = 'AM'; // نمایش وقت به صورت کامل
 
 class PersianDate {
-  int _year;
-  int _month;
-  int _day;
-  int _weekday;
-  int _hour;
-  int _minute;
-  int _second;
-  int _millisecond;
-  int _microsecond;
+  late int _year;
+  late int _month;
+  late int _day;
+  late int _weekday;
+  late int _hour;
+  late int _minute;
+  late int _second;
+  late int _millisecond;
+  late int _microsecond;
   String _getDate = '';
   String _getNow = '';
 
   String _defualtVal = "yyyy-mm-dd hh:nn:ss SSS";
 
-  PersianDate.pDate({String defualtFormat, String gregorian}) {
+  PersianDate.pDate({String? defualtFormat, String? gregorian}) {
     var now;
 
     if (defualtFormat != null) this._defualtVal = defualtFormat;
@@ -86,7 +86,7 @@ class PersianDate {
     }
   }
 
-  PersianDate([String format]) {
+  PersianDate([String? format]) {
     if (format != null) _defualtVal = format;
 
     _getNow = _now();
@@ -176,7 +176,7 @@ class PersianDate {
     "1229",
   ];
 
-  gregorianToJalali(int y, int m, int d, [String separator]) {
+  gregorianToJalali(int y, int m, int d, [String? separator]) {
     var sumMonthDay = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
     var jY = 0;
     if (y > 1600) {
@@ -218,7 +218,7 @@ class PersianDate {
     return persionDate;
   }
 
-  jalaliToGregorian(int y, int m, int d, [String separator]) {
+  jalaliToGregorian(int y, int m, int d, [String? separator]) {
     int gY;
     if (y > 979) {
       gY = 1600;
@@ -274,7 +274,7 @@ class PersianDate {
     return gregorianDate;
   }
 
-  parse(String formattedString, [String separator]) {
+  parse(String formattedString, [String? separator]) {
     var parse = DateTime.parse(formattedString);
     if (separator == null) {
       List parseList = gregorianToJalali(parse.year, parse.month, parse.day);
@@ -412,7 +412,7 @@ class PersianDate {
     return newFormat;
   }
 
-  parseToFormat(String parseDate, [String format]) {
+  parseToFormat(String parseDate, [String? format]) {
     var parse = DateTime.parse(parseDate);
     var jParse = gregorianToJalali(parse.year, parse.month, parse.day);
     if (format == null) format = _defualtVal;
